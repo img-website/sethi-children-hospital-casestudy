@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sethi Children Hospital – Digital Growth Audit | BoostronixX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Google Sans', 'DM Sans', -apple-system, sans-serif;
+  color: #1a1a2e;
+  background: #fff;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* ── UTILS ── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 44px; }
+.tag {
+  display: inline-block;
+  background: #fff3ee; color: #e8530a;
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.tag.green { background: #edfbf2; color: #14a058; }
+.tag.blue  { background: #eef4ff; color: #2563eb; }
+
+h2.sec-title {
+  font-size: clamp(24px, 2.8vw, 36px);
+  font-weight: 800; line-height: 1.2;
+  color: #1a1a2e; margin-bottom: 10px;
+}
+h2.sec-title span { color: #e8530a; }
+.sec-sub { font-size: 15px; color: #6b7280; max-width: 580px; margin-bottom: 40px; }
+
+.badge-no   { background: #fee2e2; color: #dc2626; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; white-space:nowrap; }
+.badge-yes  { background: #dcfce7; color: #16a34a; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; white-space:nowrap; }
+.badge-part { background: #fef3c7; color: #d97706; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; white-space:nowrap; }
+
+/* ══════════════════════════════════
+   COVER
+══════════════════════════════════ */
+.cover {
+  background: linear-gradient(145deg, #c10000 0%, #000000 40%, #621d00 100%);
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 60px 40px;
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='40' cy='40' r='30' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E") repeat;
+  opacity: 0.4;
+}
+.cover-chip {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff; padding: 7px 20px; border-radius: 30px;
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 24px;
+  display: inline-block; position: relative;
+}
+.cover h1 {
+  font-size: clamp(32px, 4.5vw, 58px);
+  font-weight: 900; color: #fff; line-height: 1.1;
+  margin-bottom: 8px; position: relative;
+}
+.cover h1 em { font-style: normal; opacity: 0.85; font-weight: 400; }
+.cover-sub-title {
+  font-size: 19px; color: rgba(255,255,255,0.85);
+  font-weight: 500; margin-bottom: 44px; position: relative;
+}
+.cover-toc {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 10px; max-width: 680px; margin: 0 auto 44px;
+  position: relative;
+}
+.cover-toc-item {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; padding: 9px 18px;
+  border-radius: 10px; font-size: 13px; font-weight: 500;
+  display: flex; align-items: center; gap: 8px;
+}
+.cover-toc-item .num {
+  background: rgba(255,255,255,0.25); width: 22px; height: 22px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+}
+.cover-logo-bar {
+  display: flex; align-items: center; gap: 16px;
+  position: relative;
+}
+.cover-logo {
+  background: #fff; color: #e8530a;
+  padding: 12px 28px; border-radius: 12px;
+  font-size: 22px; font-weight: 900; letter-spacing: -0.5px;
+}
+.cover-logo span { color: #1a1a2e; }
+.cover-client-label {
+  color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 500;
+}
+
+/* ══════════════════════════════════
+   ABOUT STRIP
+══════════════════════════════════ */
+.about {
+  background: #fff8f5;
+  border-top: 4px solid #e8530a;
+  padding: 64px 0;
+}
+.about-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+.about h2 { font-size: 28px; font-weight: 800; color: #1a1a2e; margin-bottom: 12px; }
+.about p { font-size: 15px; color: #4b5563; line-height: 1.8; margin-bottom: 18px; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.astat {
+  background: #fff; border-radius: 14px; padding: 20px 22px;
+  border: 1px solid #ffe4d6;
+}
+.astat .val { font-size: 28px; font-weight: 900; color: #e8530a; }
+.astat .lbl { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+
+/* ══════════════════════════════════
+   DIGITAL STANDING
+══════════════════════════════════ */
+.standing { padding: 64px 0; background: #fff; }
+.score-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 36px; }
+.sc {
+  background: #f9fafb; border: 1px solid #f0f0f0;
+  border-radius: 16px; padding: 22px; text-align: center;
+}
+.sc .s-val { font-size: 36px; font-weight: 900; }
+.sc .s-label { font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.sc .s-note { font-size: 12px; color: #6b7280; margin-top: 8px; font-weight: 500; }
+.red    { color: #dc2626; }
+.orange { color: #e8530a; }
+.yellow { color: #f59e0b; }
+.green  { color: #16a34a; }
+
+.insight-box {
+  background: linear-gradient(135deg, #fff8f5, #fff3ee);
+  border: 1.5px solid #ffd4be; border-radius: 16px;
+  padding: 24px 28px; display: flex; gap: 18px; align-items: flex-start;
+}
+.insight-box .ib-icon { font-size: 28px; flex-shrink: 0; }
+.insight-box .ib-text strong { font-size: 16px; font-weight: 800; color: #e8530a; display: block; margin-bottom: 6px; }
+.insight-box .ib-text p { font-size: 14px; color: #4b5563; line-height: 1.7; }
+
+/* ══════════════════════════════════
+   WEBSITE AUDIT
+══════════════════════════════════ */
+.website { padding: 64px 0; background: #f9fafb; }
+.ws-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ws-col-head {
+  padding: 14px 20px; border-radius: 12px 12px 0 0;
+  font-size: 13px; font-weight: 700;
+}
+.ws-col-head.old { background: #fee2e2; color: #b91c1c; }
+.ws-col-head.new { background: #dcfce7; color: #15803d; }
+.ws-items { background: #fff; border: 1px solid #f0f0f0; border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; }
+.ws-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 18px; border-bottom: 1px solid #f5f5f5;
+  font-size: 13px; color: #374151;
+}
+.ws-row:last-child { border-bottom: none; }
+.ws-row .ico { font-size: 15px; flex-shrink: 0; }
+
+/* ══════════════════════════════════
+   SOCIAL AUDIT
+══════════════════════════════════ */
+.social { padding: 64px 0; background: #fff; }
+.social-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+.chart-box {
+  background: #f9fafb; border: 1px solid #f0f0f0;
+  border-radius: 16px; padding: 24px;
+}
+.chart-box h4 {
+  font-size: 14px; font-weight: 700; color: #1a1a2e;
+  margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+}
+.chart-wrapper { position: relative; height: 200px; }
+
+.audit-card {
+  border: 1px solid #f0f0f0; border-radius: 16px; overflow: hidden;
+}
+.ac-header {
+  padding: 18px 20px; display: flex; align-items: center; gap: 14px;
+}
+.ig-bg { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.fb-bg { background: #1877f2; }
+.ac-header .ac-icon { font-size: 28px; }
+.ac-header .ac-name { color: #fff; font-size: 15px; font-weight: 700; }
+.ac-header .ac-handle { color: rgba(255,255,255,0.75); font-size: 12px; }
+.ac-stats { display: grid; grid-template-columns: repeat(3,1fr); border-bottom: 1px solid #f0f0f0; }
+.ac-stat { padding: 14px; text-align: center; border-right: 1px solid #f0f0f0; }
+.ac-stat:last-child { border-right: none; }
+.ac-stat .sv { font-size: 20px; font-weight: 800; color: #1a1a2e; }
+.ac-stat .sk { font-size: 10px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; }
+.ac-issues { padding: 16px 20px; }
+.ac-issues .iss-title { font-size: 12px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.iss-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 8px 0; border-bottom: 1px solid #f5f5f5;
+  font-size: 13px; color: #4b5563;
+}
+.iss-row:last-child { border-bottom: none; }
+.iss-dot { width: 5px; height: 5px; border-radius: 50%; background: #e8530a; flex-shrink: 0; margin-top: 7px; }
+
+/* ══════════════════════════════════
+   GBP
+══════════════════════════════════ */
+.gbp { padding: 64px 0; background: #f9fafb; }
+.gbp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.gbp-card {
+  background: #fff; border-radius: 16px; padding: 24px;
+  border: 1px solid #f0f0f0;
+}
+.gbp-card h3 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.gbp-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid #f5f5f5;
+  font-size: 13px;
+}
+.gbp-row:last-child { border-bottom: none; }
+.gbp-row .gl { color: #6b7280; }
+.gbp-row .gv { font-weight: 700; color: #1a1a2e; }
+
+.gbp-miss-row {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 11px 0; border-bottom: 1px solid #f5f5f5;
+  font-size: 13px;
+}
+.gbp-miss-row:last-child { border-bottom: none; }
+.gbp-miss-row .mi { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+.gbp-miss-row strong { display: block; font-size: 13px; color: #1a1a2e; margin-bottom: 2px; }
+.gbp-miss-row span { color: #6b7280; font-size: 12px; line-height: 1.6; }
+
+/* ══════════════════════════════════
+   COMPETITOR COMPARISON TABLE
+══════════════════════════════════ */
+.competitor { padding: 64px 0; background: #fff; }
+.comp-intro {
+  background: #fff8f5; border-radius: 16px; padding: 22px 26px;
+  border-left: 4px solid #e8530a; margin-bottom: 32px;
+  font-size: 15px; color: #374151; line-height: 1.7;
+}
+.comp-intro strong { color: #e8530a; }
+
+.comp-table-wrap { overflow-x: auto; }
+.comp-table {
+  width: 100%; border-collapse: collapse;
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+.comp-table thead tr {
+  background: #1a1a2e; color: #fff;
+}
+.comp-table thead th {
+  padding: 15px 16px; font-size: 13px;
+  font-weight: 700; text-align: left;
+}
+.comp-table thead th:not(:first-child) { text-align: center; }
+.comp-table thead th.highlight-col { background: #e8530a; }
+.comp-table tbody tr:nth-child(even) { background: #fafafa; }
+.comp-table tbody td {
+  padding: 13px 16px; font-size: 13px;
+  color: #374151; border-bottom: 1px solid #f0f0f0;
+}
+.comp-table tbody td:not(:first-child) { text-align: center; }
+.comp-table tbody td.row-label { font-weight: 600; color: #1a1a2e; }
+.comp-table tbody td.highlight-col {
+  background: #fff8f5;
+  font-weight: 700; color: #e8530a;
+}
+.comp-table tfoot td {
+  padding: 14px 16px; background: #f9fafb;
+  font-size: 12px; color: #9ca3af;
+  border-top: 2px solid #f0f0f0;
+}
+
+/* ══════════════════════════════════
+   BRAND POSITIONING GAP
+══════════════════════════════════ */
+.gap-section { padding: 64px 0; background: #f9fafb; }
+.gap-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.gap-card {
+  border-radius: 16px; padding: 28px; border: 1.5px solid;
+}
+.gap-card.current { border-color: #fecaca; background: #fff8f8; }
+.gap-card.desired { border-color: #bbf7d0; background: #f0fdf4; }
+.gap-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 6px; }
+.gap-card .gap-sub { font-size: 12px; margin-bottom: 18px; }
+.gap-card.current h3 { color: #dc2626; }
+.gap-card.desired h3 { color: #16a34a; }
+.gap-card.current .gap-sub { color: #ef9090; }
+.gap-card.desired .gap-sub { color: #6ee7b7; }
+.gap-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 9px 0; border-bottom: 1px solid;
+  font-size: 13px;
+}
+.gap-row:last-child { border-bottom: none; }
+.gap-card.current .gap-row { border-color: #fee2e2; color: #4b5563; }
+.gap-card.desired .gap-row { border-color: #d1fae5; color: #374151; }
+.gap-row .g-ic { font-size: 15px; flex-shrink: 0; }
+
+/* ══════════════════════════════════
+   WHY BOOSTRONIX
+══════════════════════════════════ */
+.why { padding: 64px 0; background: #fff; }
+.why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.why-card {
+  background: #f9fafb; border-radius: 16px; padding: 24px 20px;
+  border: 1px solid #f0f0f0; text-align: center;
+  transition: all 0.2s;
+}
+.why-card:hover { border-color: #ffd4be; background: #fff8f5; }
+.why-icon { font-size: 36px; margin-bottom: 12px; }
+.why-card h4 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+.why-card p { font-size: 12px; color: #6b7280; line-height: 1.7; }
+
+/* ══════════════════════════════════
+   6-MONTH ROADMAP
+══════════════════════════════════ */
+.roadmap { padding: 64px 0; background: #1a1a2e; }
+.roadmap .tag { background: rgba(232,83,10,0.2); color: #ff8c5a; }
+.roadmap h2.sec-title { color: #fff; }
+.roadmap h2.sec-title span { color: #ff8c5a; }
+.roadmap .sec-sub { color: rgba(255,255,255,0.55); }
+
+.phase-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; margin-bottom: 8px; color: #ff8c5a;
+}
+.phases-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.phase-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px; padding: 24px; height: 100%;
+}
+.phase-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 17px; margin-bottom: 14px;
+}
+.p1 .phase-num { background: #e8530a; color: #fff; }
+.p2 .phase-num { background: #f59e0b; color: #1a1a2e; }
+.p3 .phase-num { background: #16a34a; color: #fff; }
+.phase-card h4 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.phase-card .p-sub { font-size: 12px; margin-bottom: 14px; }
+.p1 .p-sub { color: #ff8c5a; }
+.p2 .p-sub { color: #fcd34d; }
+.p3 .p-sub { color: #86efac; }
+.phase-tasks li {
+  font-size: 13px; color: rgba(255,255,255,0.65);
+  padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; gap: 8px; list-style: none;
+}
+.phase-tasks li:last-child { border-bottom: none; }
+.phase-tasks li::before { content: '→'; flex-shrink: 0; }
+.p1 .phase-tasks li::before { color: #e8530a; }
+.p2 .phase-tasks li::before { color: #f59e0b; }
+.p3 .phase-tasks li::before { color: #16a34a; }
+
+/* ══════════════════════════════════
+   WHAT SUCCESS LOOKS LIKE
+══════════════════════════════════ */
+.success { padding: 64px 0; background: #fff; }
+.success-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.succ-card {
+  background: #f9fafb; border-radius: 16px; padding: 24px;
+  border: 1px solid #f0f0f0; text-align: center;
+}
+.succ-icon { font-size: 36px; margin-bottom: 12px; }
+.succ-card h4 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+.succ-card p { font-size: 13px; color: #6b7280; line-height: 1.7; }
+.succ-card .succ-tag { margin-top: 12px; }
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+.footer-bar {
+      background: #101020; padding: 22px 44px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-bar .fb-logo { font-size: 18px; font-weight: 900; color: #fff; }
+.footer-bar .fb-logo span { color: rgba(255,255,255,0.7); }
+.footer-bar .fb-text { font-size: 13px; color: rgba(255,255,255,0.8); }
+.footer-powered {
+  background: #1a1a2e; padding: 14px 44px;
+  text-align: center; font-size: 13px; color: rgba(255,255,255,0.4);
+}
+
+@media(max-width:768px) {
+  .container { padding: 0 20px; }
+  .about-layout,.ws-grid,.social-layout,.gbp-layout,.gap-layout,.phases-grid { grid-template-columns: 1fr; }
+  .score-cards { grid-template-columns: repeat(2,1fr); }
+  .why-grid { grid-template-columns: repeat(2,1fr); }
+  .success-grid { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     COVER
+══════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-chip">Digital Growth & Branding Audit</div>
+  <h1>Sethi Children Hospital, <em>Alwar</em><br>Digital Growth & Branding Audit</h1>
+  <p class="cover-sub-title">Prepared by BoostronixX — A 6-Month Digital Growth Blueprint</p>
+
+  <div class="cover-toc">
+    <div class="cover-toc-item"><div class="num">1</div> 🏥 About the Hospital</div>
+    <div class="cover-toc-item"><div class="num">2</div> 📊 Digital Presence Score</div>
+    <div class="cover-toc-item"><div class="num">3</div> 🌐 Website Audit</div>
+    <div class="cover-toc-item"><div class="num">4</div> 📱 Social Media Audit</div>
+    <div class="cover-toc-item"><div class="num">5</div> 📍 Google Business Profile</div>
+    <div class="cover-toc-item"><div class="num">6</div> 🏆 Competitor Landscape</div>
+    <div class="cover-toc-item"><div class="num">7</div> 🪞 Brand Positioning Gap</div>
+    <div class="cover-toc-item"><div class="num">8</div> 🗓️ 6-Month Roadmap</div>
+  </div>
+
+  <div class="cover-logo-bar">
+    <img src="https://boostronixx.s3.ap-south-1.amazonaws.com/wp-content/uploads/2026/05/boostronixx-white-logo-new.webp" alt="BoostronixX" style="height:48px; object-fit:contain; filter:brightness(1);">
+    <div class="cover-client-label" style="display:flex; align-items:center; gap:10px;">
+      <span style="color:rgba(255,255,255,0.6); font-size:40px;">|</span>
+      <img src="https://www.sethichildrenhospital.com/wp-content/themes/twentyfourteen/img/sethi-hospital-logo2.png" alt="Sethi Children Hospital" style="height:44px;">
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     1. ABOUT
+══════════════════════════════════ -->
+<section class="about">
+  <div class="container">
+    <div class="about-layout">
+      <div>
+        <div class="tag">About the Hospital</div>
+        <h2>Alwar's Largest<br>Exclusive Pediatric Hospital</h2>
+        <p>Founded by Dr. Dileep Sethi over two decades ago — starting from just 4 beds — Sethi Children Hospital has grown into a <strong>75-bed comprehensive pediatric centre</strong>, the largest of its kind in District Alwar. NABH Fully Accredited.</p>
+        <p>Led by Dr. Chirag Sethi (Gold Medalist, trained at Baylor College of Medicine, USA), the hospital runs a world-class NICU & PICU, and is the <strong>first in the district</strong> to offer all paediatric super-speciality services under one roof.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <span class="badge-yes">✓ NABH Fully Accredited</span>
+          <span class="badge-yes">✓ 4.7★ Google Rating</span>
+          <span class="badge-yes">✓ 1,061 Reviews</span>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="astat"><div class="val">75</div><div class="lbl">Exclusive Paediatric Beds</div></div>
+        <div class="astat"><div class="val">5,000+</div><div class="lbl">Inpatient Admissions / Year</div></div>
+        <div class="astat"><div class="val">30,000+</div><div class="lbl">OPD Visits Annually</div></div>
+        <div class="astat"><div class="val">20+ Yrs</div><div class="lbl">Legacy in Paediatric Care</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     2. DIGITAL STANDING
+══════════════════════════════════ -->
+<section class="standing">
+  <div class="container">
+    <div class="tag">Digital Presence Overview</div>
+    <h2 class="sec-title">Where Sethi Hospital Stands<br><span>Digitally Today</span></h2>
+    <p class="sec-sub">A snapshot across all digital channels — before BoostronixX engagement.</p>
+
+    <div class="score-cards">
+      <div class="sc">
+        <div class="s-val red">3.5/10</div>
+        <div class="s-label">Website</div>
+        <div class="s-note">2017 design, weak SEO, no schema</div>
+      </div>
+      <div class="sc">
+        <div class="s-val orange">4/10</div>
+        <div class="s-label">Instagram</div>
+        <div class="s-note">1,029 followers, low reach</div>
+      </div>
+      <div class="sc">
+        <div class="s-val yellow">5/10</div>
+        <div class="s-label">Facebook</div>
+        <div class="s-note">17K likes, ~0.03% engagement</div>
+      </div>
+      <div class="sc">
+        <div class="s-val green">7.5/10</div>
+        <div class="s-label">Google Business</div>
+        <div class="s-note">4.7★, 1,061 reviews — strong!</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="ib-icon">💡</div>
+      <div class="ib-text">
+        <strong>The Core Opportunity</strong>
+        <p>Sethi Children Hospital has Alwar's strongest offline reputation — 4.7★ with 1,061+ Google reviews. But that trust is <strong>not visible online</strong>. Patients can't find the hospital easily on search. The social media presence doesn't match the quality of care being delivered. This gap is a first-mover opportunity — the hospital that fixes this first will capture the parent audience for years to come.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     3. WEBSITE AUDIT
+══════════════════════════════════ -->
+<section class="website">
+  <div class="container">
+    <div class="tag">Website Audit</div>
+    <h2 class="sec-title">Old Website vs. <span>New Website</span></h2>
+    <p class="sec-sub">A side-by-side comparison of what's live vs. what's ready to launch.</p>
+
+    <div class="ws-grid">
+      <div>
+        <div class="ws-col-head old">❌ LIVE NOW — sethichildrenhospital.com</div>
+        <div class="ws-items">
+          <div class="ws-row"><span class="ico">🎨</span> <span>Outdated design from <strong>2015</strong> — not mobile-first <span class="badge-no">CRITICAL</span></span></div>
+          <div class="ws-row"><span class="ico">🔍</span> <span>No location in SEO title — zero local intent <span class="badge-no">WEAK</span></span></div>
+          <div class="ws-row"><span class="ico">📋</span> <span>No meta description on homepage <span class="badge-no">MISSING</span></span></div>
+          <div class="ws-row"><span class="ico">🗃️</span> <span>No Schema / Structured Data markup <span class="badge-no">MISSING</span></span></div>
+          <div class="ws-row"><span class="ico">⚡</span> <span>17 heavy slider images — very slow loading <span class="badge-no">SLOW</span></span></div>
+          <div class="ws-row"><span class="ico">🏆</span> <span>NABH badge not shown — trust signal missing <span class="badge-no">ABSENT</span></span></div>
+          <div class="ws-row"><span class="ico">📞</span> <span>4 phone numbers, no clear WhatsApp CTA <span class="badge-part">POOR UX</span></span></div>
+          <div class="ws-row"><span class="ico">📊</span> <span>No Google Analytics 4 / conversion tracking <span class="badge-no">MISSING</span></span></div>
+        </div>
+      </div>
+      <div>
+        <div class="ws-col-head new">✅ READY TO LAUNCH — New Website</div>
+        <div class="ws-items">
+          <div class="ws-row"><span class="ico">🎨</span> <span>Modern, clean healthcare design — mobile-first <span class="badge-yes">UPGRADED</span></span></div>
+          <div class="ws-row"><span class="ico">🔍</span> <span>Location-targeted titles & SEO-ready structure <span class="badge-yes">IMPROVED</span></span></div>
+          <div class="ws-row"><span class="ico">🩺</span> <span>Dedicated doctor profile pages with credentials <span class="badge-yes">ADDED</span></span></div>
+          <div class="ws-row"><span class="ico">📄</span> <span>Individual pages per service (NICU, PICU, Vaccines) <span class="badge-yes">ADDED</span></span></div>
+          <div class="ws-row"><span class="ico">⚡</span> <span>Optimised images, significantly faster load time <span class="badge-yes">FASTER</span></span></div>
+          <div class="ws-row"><span class="ico">🏆</span> <span>NABH badge & trust signals prominently displayed <span class="badge-yes">ADDED</span></span></div>
+          <div class="ws-row"><span class="ico">💬</span> <span>WhatsApp quick contact & appointment booking <span class="badge-yes">ADDED</span></span></div>
+          <div class="ws-row"><span class="ico">📍</span> <span>Google Map embed & location signals built-in <span class="badge-yes">IMPROVED</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     4. SOCIAL MEDIA AUDIT
+══════════════════════════════════ -->
+<section class="social">
+  <div class="container">
+    <div class="tag">Social Media Audit</div>
+    <h2 class="sec-title">Instagram & Facebook — <span>Audit</span></h2>
+    <p class="sec-sub">Sethi Hospital's social following vs. Jaipur's top dedicated children's hospitals — and what's holding the accounts back.</p>
+
+    <!-- Bar Charts -->
+    <div class="social-layout" style="margin-bottom:32px;">
+      <div class="chart-box">
+        <h4>📸 Instagram Followers — vs Jaipur's Top Hospitals</h4>
+        <div class="chart-wrapper">
+          <canvas id="igChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-box">
+        <h4>👥 Facebook Active Reach — vs Jaipur's Top Hospitals <span style="font-size:10px; font-weight:400; color:#e8530a;">(Sethi: 17K likes but &lt;0.03% engagement)</span></h4>
+        <div class="chart-wrapper">
+          <canvas id="fbChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platform Audits -->
+    <div class="social-layout">
+      <!-- Instagram -->
+      <div class="audit-card">
+        <div class="ac-header ig-bg">
+          <div class="ac-icon">📸</div>
+          <div>
+            <div class="ac-name">Sethi Children Hospital</div>
+            <div class="ac-handle">@sethihospital · Instagram</div>
+          </div>
+        </div>
+        <div class="ac-stats">
+          <div class="ac-stat"><div class="sv">1,029</div><div class="sk">Followers</div></div>
+          <div class="ac-stat"><div class="sv">259</div><div class="sk">Posts</div></div>
+          <div class="ac-stat"><div class="sv">2</div><div class="sk">Following</div></div>
+        </div>
+        <div class="ac-issues">
+          <div class="iss-title">⚠️ Issues Found</div>
+          <div class="iss-row"><div class="iss-dot"></div>Follower count very low vs. hospital size — 30K+ OPD patients/year but only 1K followers online</div>
+          <div class="iss-row"><div class="iss-dot"></div>No Story Highlights — visitors can't quickly discover services, doctors, or NABH accreditation</div>
+          <div class="iss-row"><div class="iss-dot"></div>Irregular posting — no clear content calendar or strategy in place</div>
+          <div class="iss-row"><div class="iss-dot"></div>Bio not conversion-optimised — no WhatsApp link or appointment booking CTA</div>
+          <div class="iss-row"><div class="iss-dot"></div>No paid advertising running — organic reach alone is not sufficient for growth</div>
+        </div>
+      </div>
+
+      <!-- Facebook -->
+      <div class="audit-card">
+        <div class="ac-header fb-bg">
+          <div class="ac-icon">👥</div>
+          <div>
+            <div class="ac-name">Sethi Children Hospital</div>
+            <div class="ac-handle">sethichildrenhospitalalwar · Facebook</div>
+          </div>
+        </div>
+        <div class="ac-stats">
+          <div class="ac-stat"><div class="sv">17,714</div><div class="sk">Page Likes</div></div>
+          <div class="ac-stat"><div class="sv">~5</div><div class="sk">Talking About</div></div>
+          <div class="ac-stat"><div class="sv">~0.03%</div><div class="sk">Engagement</div></div>
+        </div>
+        <div class="ac-issues">
+          <div class="iss-title">⚠️ Issues Found</div>
+          <div class="iss-row"><div class="iss-dot"></div>Critical: 17K likes but only ~5 actively engaging — page reach is nearly dead without paid boost</div>
+          <div class="iss-row"><div class="iss-dot"></div>No Facebook Ads running — posts are likely reaching fewer than 200 people organically</div>
+          <div class="iss-row"><div class="iss-dot"></div>No video / reel strategy — video gets 3–5× more reach on Facebook than static posts</div>
+          <div class="iss-row"><div class="iss-dot"></div>No Facebook Events for health camps, vaccination drives, or health awareness days</div>
+          <div class="iss-row"><div class="iss-dot"></div>No review response strategy — reviews not being actively monitored or replied to</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; background:#fff3ee; border-radius:12px; padding:18px 22px; font-size:14px; color:#374151; border-left:4px solid #e8530a;">
+      <strong style="color:#e8530a;">259 posts created with genuine effort. The issue is not effort — it is strategy.</strong>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     5. GOOGLE BUSINESS PROFILE
+══════════════════════════════════ -->
+<section class="gbp">
+  <div class="container">
+    <div class="tag">Google Business Profile</div>
+    <h2 class="sec-title">GBP Audit — <span>Strengths & Gaps</span></h2>
+    <p class="sec-sub">The hospital's strongest digital asset — but several free optimisation opportunities remain untapped.</p>
+
+    <div class="gbp-layout">
+      <div>
+        <div class="gbp-card" style="border-left:4px solid #16a34a;">
+          <h3>✅ What's Working</h3>
+          <div class="gbp-row"><span class="gl">Google Rating</span><span class="gv" style="color:#e8530a;">4.7 ★★★★★</span></div>
+          <div class="gbp-row"><span class="gl">Total Reviews</span><span class="gv">1,061 — Alwar's best</span></div>
+          <div class="gbp-row"><span class="gl">Book Online Button</span><span class="gv"><span class="badge-yes">✓ Present</span></span></div>
+          <div class="gbp-row"><span class="gl">Map Location</span><span class="gv"><span class="badge-yes">✓ Accurate</span></span></div>
+          <div class="gbp-row"><span class="gl">NABH Accreditation</span><span class="gv"><span class="badge-yes">✓ Full NABH</span></span></div>
+          <div class="gbp-row"><span class="gl">Photos Present</span><span class="gv"><span class="badge-yes">✓ Yes</span></span></div>
+        </div>
+
+        <div class="gbp-card" style="margin-top:20px; background:#fff8f5;">
+          <h3>🌟 Review Opportunity</h3>
+          <p style="font-size:13px; color:#4b5563; line-height:1.8;">With 30,000+ OPD visits per year, the hospital should be generating far more than 1,061 reviews. A simple WhatsApp or SMS review request flow after each visit could significantly grow this number — and push Sethi Hospital further ahead of all local competitors.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="gbp-card">
+          <h3>⚠️ What Needs to Improve</h3>
+          <div class="gbp-miss-row">
+            <span class="mi">✗</span>
+            <div><strong>Google Posts Not Being Used</strong><span>Free weekly posts appear in search results. Currently zero posts published.</span></div>
+          </div>
+          <div class="gbp-miss-row">
+            <span class="mi">✗</span>
+            <div><strong>Q&A Section Unmanaged</strong><span>Public Q&A not being monitored — unanswered questions reduce trust.</span></div>
+          </div>
+          <div class="gbp-miss-row">
+            <span class="mi">✗</span>
+            <div><strong>Services Catalogue Incomplete</strong><span>NICU, PICU, Vaccination, OPD services not properly listed.</span></div>
+          </div>
+          <div class="gbp-miss-row">
+            <span class="mi">✗</span>
+            <div><strong>No Review Response Strategy</strong><span>Not responding to reviews — a Google ranking signal being ignored.</span></div>
+          </div>
+          <div class="gbp-miss-row">
+            <span class="mi">✗</span>
+            <div><strong>Healthcare Attributes Missing</strong><span>"24/7 Emergency," "Insurance Accepted," "Online Appointments" not all set.</span></div>
+          </div>
+          <div class="gbp-miss-row">
+            <span class="mi">✗</span>
+            <div><strong>No Systematic Review Requests</strong><span>No post-visit WhatsApp/SMS system to request reviews from happy patients.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     6. COMPETITOR LANDSCAPE
+══════════════════════════════════ -->
+<section class="competitor">
+  <div class="container">
+    <div class="tag">Competitor Landscape</div>
+    <h2 class="sec-title">What Others Are Doing — <span>Competitor</span></h2>
+    <p class="sec-sub">Sethi Hospital vs. Jaipur's top 2 children's hospitals — the benchmark every Rajasthan parent is comparing you against.</p>
+
+    <div class="comp-intro">
+      Jaipur's leading pediatric hospitals have <strong>2–3× more Instagram followers and active digital strategies</strong> — content calendars, reels, SEO blogs, and paid ads running consistently. Sethi Children Hospital has the strongest offline reputation in Alwar, but digitally, it is being outpaced by Jaipur hospitals that parents increasingly compare online. <strong>The hospital that closes this digital gap first will own the Rajasthan parent audience.</strong>
+    </div>
+
+    <div class="comp-table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="min-width:200px;">Digital Activity</th>
+            <th style="min-width:180px;">🏆 Neo Clinic, Jaipur</th>
+            <th style="min-width:180px;">🥈 Cradle Children Hospital, Jaipur</th>
+            <th class="highlight-col" style="min-width:180px;">⚠️ Sethi Children Hospital, Alwar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">📸 Instagram Followers</td>
+            <td><strong>2,858</strong> ✓</td>
+            <td><strong>2,619</strong> ✓</td>
+            <td class="highlight-col"><span class="red">1,029 ❌</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">👥 Facebook Followers</td>
+            <td><strong>9,200</strong> ✓</td>
+            <td><strong>7,000</strong> ✓</td>
+            <td class="highlight-col"><span class="orange">17,714 (dead reach) ⚠️</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">⭐ Google Reviews</td>
+            <td><strong>2,120 (4.7★)</strong> ✓</td>
+            <td><strong>3,113 (4.6★)</strong> ✓</td>
+            <td class="highlight-col"><span class="red">1,061 (4.7★) ❌</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">🎬 Active Reels Strategy</td>
+            <td><span class="badge-yes">Active ✓</span></td>
+            <td><span class="badge-yes">Active ✓</span></td>
+            <td class="highlight-col"><span class="badge-part">Occasional ⚠️</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">🔍 Google Search Visibility</td>
+            <td><span class="badge-yes">Strong</span></td>
+            <td><span class="badge-part">Medium</span></td>
+            <td class="highlight-col"><span class="badge-no">Weak ❌</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">🎨 Branded Visual Identity</td>
+            <td><span class="badge-yes">Consistent ✓</span></td>
+            <td><span class="badge-yes">Consistent ✓</span></td>
+            <td class="highlight-col"><span class="badge-no">Inconsistent ❌</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">📌 Story Highlights (IG)</td>
+            <td><span class="badge-yes">Yes ✓</span></td>
+            <td><span class="badge-yes">Yes ✓</span></td>
+            <td class="highlight-col"><span class="badge-no">None ❌</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">📅 Content Calendar</td>
+            <td><span class="badge-yes">Yes ✓</span></td>
+            <td><span class="badge-yes">Yes ✓</span></td>
+            <td class="highlight-col"><span class="badge-no">No ❌</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">📣 Paid Ads Running</td>
+            <td><span class="badge-yes">Active ✓</span></td>
+            <td><span class="badge-part">Occasional</span></td>
+            <td class="highlight-col"><span class="badge-no">No ❌</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">📍 Google My Business</td>
+            <td><span class="badge-yes">Fully Optimised ✓</span></td>
+            <td><span class="badge-part">Partial</span></td>
+            <td class="highlight-col"><span class="badge-part">Partial ⚠️</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">🌐 Website Quality</td>
+            <td><span class="badge-yes">Modern ✓</span></td>
+            <td><span class="badge-yes">Modern ✓</span></td>
+            <td class="highlight-col"><span class="badge-no">Outdated ❌</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">✍️ Blog / SEO Content</td>
+            <td><span class="badge-yes">Regular ✓</span></td>
+            <td><span class="badge-part">Occasional</span></td>
+            <td class="highlight-col"><span class="badge-no">None ❌</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="4">★ Data sourced from public social profiles, Google Maps, and search results · May 2026 · Neo Clinic & Cradle Children Hospital are Jaipur's top-ranked dedicated pediatric hospitals</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div style="margin-top:20px; background:#fff3ee; border-radius:12px; padding:18px 22px; font-size:14px; color:#374151; border-left:4px solid #e8530a;">
+      <strong style="color:#e8530a;">⚠️ Jaipur's top pediatric hospitals are already 2–3× ahead on Instagram and running active digital strategies.</strong> Sethi Hospital's offline reputation is strong — but online, parents comparing hospitals don't see that. This is the gap BoostronixX is built to close.
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     7. BRAND POSITIONING GAP
+══════════════════════════════════ -->
+<section class="gap-section">
+  <div class="container">
+    <div class="tag">Brand Positioning</div>
+    <h2 class="sec-title">Brand Positioning Gap —<br><span>Perception vs. Reality</span></h2>
+    <p class="sec-sub">The gap between what parents see online and what Sethi Hospital actually is.</p>
+
+    <div class="gap-layout">
+      <div class="gap-card current">
+        <h3>😟 Current Digital Perception</h3>
+        <div class="gap-sub">What a parent sees today</div>
+        <div class="gap-row"><span class="g-ic">→</span>A website that looks outdated and loads slowly on mobile</div>
+        <div class="gap-row"><span class="g-ic">→</span>An Instagram with 1,029 followers — doesn't match the hospital's scale</div>
+        <div class="gap-row"><span class="g-ic">→</span>Social posts that feel inconsistent with no clear brand voice</div>
+        <div class="gap-row"><span class="g-ic">→</span>Hard to find on Google when searching "best children hospital Alwar"</div>
+        <div class="gap-row"><span class="g-ic">→</span>NABH accreditation not visible or promoted online</div>
+      </div>
+      <div class="gap-card desired">
+        <h3>😍 Desired Brand Perception</h3>
+        <div class="gap-sub">What a parent should experience</div>
+        <div class="gap-row"><span class="g-ic">→</span>A premium, fast website that makes booking an appointment easy</div>
+        <div class="gap-row"><span class="g-ic">→</span>An Instagram that shows real hospital life, doctors, and happy families</div>
+        <div class="gap-row"><span class="g-ic">→</span>Consistent, warm, trustworthy content posted regularly on both platforms</div>
+        <div class="gap-row"><span class="g-ic">→</span>Appears at the top of Google for all major paediatric searches in Alwar</div>
+        <div class="gap-row"><span class="g-ic">→</span>NABH badge, 4.7★ rating, and 1,000+ reviews front and centre everywhere</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     WHY BOOSTRONIX
+══════════════════════════════════ -->
+<section class="why">
+  <div class="container">
+    <div class="tag">Why BoostronixX</div>
+    <h2 class="sec-title">How BoostronixX Can Help —<br><span>& Why We're Different</span></h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🔍</div>
+        <h4>Search Engine Optimisation</h4>
+        <p>We ensure Sethi Hospital appears when parents in Alwar and nearby districts search for paediatric care.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📱</div>
+        <h4>Social Media Management</h4>
+        <p>Consistent, well-designed content published on a fixed calendar — Instagram, Facebook, and Reels.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌐</div>
+        <h4>Website Strategy & UX</h4>
+        <p>Launch the new website with full SEO setup, GA4 tracking, schema markup, and speed optimisation.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h4>Brand Consulting</h4>
+        <p>Build a consistent digital identity that earns the trust of Alwar parents — online and offline.</p>
+      </div>
+    </div>
+    <div style="margin-top:28px; text-align:center; background:#fff8f5; border-radius:16px; padding:22px; border:1.5px solid #ffd4be;">
+      <p style="font-size:14px; color:#6b7280; max-width:600px; margin:0 auto;">"SEO is not about tricks. It is about being findable when parents are actively looking. Right now, that opportunity is going to competitors."</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     6-MONTH ROADMAP
+══════════════════════════════════ -->
+<section class="roadmap">
+  <div class="container">
+    <div class="tag">6-Month Digital Growth Roadmap</div>
+    <h2 class="sec-title">A Structured Path from<br><span>Foundation → Amplify → Dominate</span></h2>
+    <p class="sec-sub">Three phases. Every deliverable planned. Every month accounted for.</p>
+
+    <div class="phases-grid">
+      <!-- Phase 1 -->
+      <div class="phase-card p1">
+        <div class="phase-num">1</div>
+        <div class="phase-label">Phase 1 — Month 1–2</div>
+        <h4>Foundation</h4>
+        <div class="p-sub">Building the right base</div>
+        <ul class="phase-tasks">
+          <li>New website go-live + full SEO setup</li>
+          <li>GA4, Search Console & Tag Manager installed</li>
+          <li>Schema markup on all pages</li>
+          <li>GBP fully optimised — services, attributes, Q&A</li>
+          <li>Brand visual identity guide created</li>
+          <li>Instagram & Facebook profiles redesigned</li>
+          <li>Content calendar planned & activated</li>
+        </ul>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-card p2">
+        <div class="phase-num">2</div>
+        <div class="phase-label">Phase 2 — Month 3–4</div>
+        <h4>Amplify</h4>
+        <div class="p-sub">Creating visible, consistent growth</div>
+        <ul class="phase-tasks">
+          <li>Blog content 2x per week — health tips, parenting</li>
+          <li>2 keyword-targeted posts per month for SEO</li>
+          <li>Community built — 2 parent groups engaged</li>
+          <li>Facebook video posts & Reels launched</li>
+          <li>Facebook video & event promotion established</li>
+          <li>Ads activated — awareness + appointment CTA</li>
+          <li>Review request system — post-visit WhatsApp/SMS</li>
+        </ul>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-card p3">
+        <div class="phase-num">3</div>
+        <div class="phase-label">Phase 3 — Month 5–6</div>
+        <h4>Dominate</h4>
+        <div class="p-sub">Establishing Sethi as the digital leader</div>
+        <ul class="phase-tasks">
+          <li>Ranking for key Alwar paediatric search terms</li>
+          <li>Full campus tour video produced & published</li>
+          <li>Community active & engaged on both platforms</li>
+          <li>Appointment enquiries from digital channels tracked</li>
+          <li>Doctor expertise content series live</li>
+          <li>6-month digital impact report delivered</li>
+          <li>Next phase strategy prepared & ready to launch</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     WHAT SUCCESS LOOKS LIKE
+══════════════════════════════════ -->
+<section class="success">
+  <div class="container">
+    <div class="tag">What Success Looks Like at 6 Months</div>
+    <h2 class="sec-title">Phase Outcome — Sethi Hospital is<br><span>Alwar's Leading Digital Paediatric Brand</span></h2>
+
+    <div class="success-grid">
+      <div class="succ-card">
+        <div class="succ-icon">📸</div>
+        <h4>Instagram</h4>
+        <p>Meaningful follower growth with a consistent, engaged parent audience. Story Highlights inform. Reels reach new parents.</p>
+        <div class="succ-tag"><span class="tag green">Improved from current base</span></div>
+      </div>
+      <div class="succ-card">
+        <div class="succ-icon">👥</div>
+        <h4>Facebook</h4>
+        <p>Active community with real engagement. Paid ads reaching targeted parents in Alwar, Bhiwadi & nearby districts.</p>
+        <div class="succ-tag"><span class="tag green">Improved from current base</span></div>
+      </div>
+      <div class="succ-card">
+        <div class="succ-icon">🔍</div>
+        <h4>Google / SEO</h4>
+        <p>Ranking for key Alwar paediatric search terms. New website indexed, fast, and converting visitors into enquiries.</p>
+        <div class="succ-tag"><span class="tag green">Better visibility than today</span></div>
+      </div>
+      <div class="succ-card">
+        <div class="succ-icon">📍</div>
+        <h4>Google Business</h4>
+        <p>GBP fully optimised with weekly posts, all reviews responded to, and a growing review count from new patients.</p>
+        <div class="succ-tag"><span class="tag green">Improved from current base</span></div>
+      </div>
+      <div class="succ-card">
+        <div class="succ-icon">📞</div>
+        <h4>Enquiries</h4>
+        <p>Measurable increase in appointment enquiries from digital channels — tracked via GA4 and WhatsApp analytics.</p>
+        <div class="succ-tag"><span class="tag green">More than today</span></div>
+      </div>
+      <div class="succ-card">
+        <div class="succ-icon">🏆</div>
+        <h4>Brand</h4>
+        <p>Premium, consistent, recognisable digital identity across all platforms — matching the real-world reputation of the hospital.</p>
+        <div class="succ-tag"><span class="tag green">Stronger than today</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<div class="footer-bar">
+  <img src="https://boostronixx.s3.ap-south-1.amazonaws.com/wp-content/uploads/2026/05/boostronixx-white-logo-new.webp" alt="BoostronixX" style="height:36px; object-fit:contain;">
+  <div class="fb-text">Prepared for Sethi Children Hospital, Alwar · May 2026 · Confidential</div>
+  <div class="fb-text">website@imgglobalinfotech.com</div>
+</div>
+<div class="footer-powered">Powered by IMG Global Infotech</div>
+
+
+<!-- ══════════════════════════════════
+     CHARTS (Chart.js)
+══════════════════════════════════ -->
+<script>
+const fontFamily = "'Google Sans', 'DM Sans', sans-serif";
+const orangeColor = '#e8530a';
+// Colors: top hospital = green, medium = blue/grey, client (Sethi) = orange/red (lowest)
+const barColors  = ['#16a34a', '#2563eb', '#e8530a'];
+const borderColors = ['#14532d', '#1e40af', '#c8420a'];
+
+Chart.defaults.font.family = fontFamily;
+Chart.defaults.font.size   = 12;
+
+// Instagram chart — Neo (top) → Cradle (medium) → Sethi (lowest)
+new Chart(document.getElementById('igChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Neo Clinic\nJaipur', 'Cradle Children\nHospital, Jaipur', 'Sethi Children\nHospital, Alwar'],
+    datasets: [{
+      label: 'Instagram Followers',
+      data: [2858, 2619, 1029],
+      backgroundColor: barColors,
+      borderColor: borderColors,
+      borderWidth: 1.5,
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' followers'
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: {
+        beginAtZero: true,
+        grid: { color: '#f0f0f0' },
+        ticks: {
+          callback: v => v >= 1000 ? (v/1000).toFixed(1) + 'k' : v
+        }
+      }
+    }
+  }
+});
+
+// Facebook chart — Neo (top) → Cradle (medium) → Sethi (lowest active reach)
+new Chart(document.getElementById('fbChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Neo Clinic\nJaipur', 'Cradle Children\nHospital, Jaipur', 'Sethi Children\nHospital, Alwar'],
+    datasets: [{
+      label: 'Facebook Followers / Active Reach',
+      data: [9200, 7000, 17714],
+      backgroundColor: ['#16a34a', '#2563eb', 'rgba(232,83,10,0.35)'],
+      borderColor: ['#14532d', '#1e40af', '#c8420a'],
+      borderWidth: 1.5,
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => {
+            const labels = ['9,200 active followers', '7,000 active followers', '17,714 likes — ~0.03% engagement (dead reach ⚠️)'];
+            return ' ' + labels[ctx.dataIndex];
+          }
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: {
+        beginAtZero: true,
+        grid: { color: '#f0f0f0' },
+        ticks: {
+          callback: v => v >= 1000 ? (v/1000).toFixed(1) + 'k' : v
+        }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
